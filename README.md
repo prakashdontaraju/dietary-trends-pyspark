@@ -7,7 +7,7 @@ I process data by utilizing Apache Spark Python API - PySpark and cluster data b
 
 ## Problem
 
-There is an alarming increase in the rate of new diabetes diagnoses among children over the last 2 decades. Improper diet intake can deprive the body of vital macro and micro nutrients leading to diabetes.
+There is an alarming increase in the rate of new diabetes diagnoses among children over the 2 decades from 1998 to 2018. Improper diet intake can deprive the body of vital macro and micro nutrients leading to diabetes.
 
 
 ## Solution
@@ -24,16 +24,16 @@ What are the tools you need to install?
 ```
 You must have administrator access to install the following:
 
-Apache Spark      spark-2.3.0-bin-hadoop2.7 or better
-Python            3.6.5 or better
-Python Libraries  pyspark, scikit-learn, pandas, matplotlib, numpy
+Apache Spark      spark-2.3.0-bin-hadoop2.7 or newer
+Python            3.6.5 or newer
+Python Libraries  pyspark, scikit-learn, numpy, pandas, matplotlib
 Text Editor       VS Code or any other
 ```
 
 
 ### Deployment
 
-Ensure the path in the line ```findspark.init(r'C:/.../spark-2.3.0-bin-hadoop2.7') ``` within ```dietary-trends.py``` matches your Spark installation path
+Ensure the path in the line ```findspark.init(r'C:/.../spark-2.3.0-bin-hadoop2.7')``` within ```dietary-trends.py``` matches your Spark installation path
 
 
 ### Data
@@ -84,11 +84,13 @@ I perform the following analysis on pre-processed (clean) children data:
 * Food Composition (nutrient-wise breakdown) for each financial class as well as overall
 
 * Clustering intake data of all *4* nutrients for each financial class as well as overall
-  - K-Means with K = *6*
-    + *6* yields the least within cluster sum of squares error (WSSSE) when I plot WSSSE vs K line graph
-  - K = *6* also reflects *6* ranges of *ipr* values (0-1 until 5-6)
-    + *2* color bands represent each financial class
-  - Visualizing *4* dimensional (*4* nutrients) data using tSNE
+  + K-Means with K = *6*
+    - *6* yields the least within cluster sum of squares error (WSSSE) when I plot WSSSE vs K line graph
+
+  + K = *6* also reflects *6* ranges of *ipr* values (0-1 until 5-6)
+    - *2* color bands represent each financial class
+  
+  + Visualizing *4* dimensional (*4* nutrients) data using tSNE
 
 * Parallel coordinates representation of intake of all *4* nutrients per financial class
 
@@ -96,7 +98,7 @@ I perform the following analysis on pre-processed (clean) children data:
 
 * Average intake per financial class over 12 years for each nutrient
 
-* Fat vs Carbohydrate and Fiber vs Protein density plots
+* Fat vs Carbohydrate and Protein vs Fiber density plots
 
 
 ## Author
