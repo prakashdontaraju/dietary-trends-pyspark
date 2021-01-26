@@ -1,16 +1,15 @@
 import csv
-import numpy as np
-import pandas as pd
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-from sklearn.manifold import TSNE
+import numpy as np
+import pandas as pd
+from pandas.plotting import parallel_coordinates
 from pyspark.mllib.clustering import KMeans
-from pandas.tools.plotting import parallel_coordinates
+from sklearn.manifold import TSNE
 
 
-
-def calculateWSSSE(data_to_cluster):
-    """calculates Within Set Sum of Squared Error (WSSSE)"""
+def calculate_wssse(data_to_cluster):
+    """Calculates Within Set Sum of Squared Error (WSSSE)"""
     
     K = []
     wssse = []
@@ -19,7 +18,8 @@ def calculateWSSSE(data_to_cluster):
         
         print('Computing WSSE for {}'.format(k))
         K.append(k)
-        model = KMeans.train(data_to_cluster, k, maxIterations=10, initializationMode='random')
+        model = KMeans.train(
+            data_to_cluster, k, maxIterations=10, initializationMode='random')
         wssse_value = model.computeCost(data_to_cluster)
         wssse.append(wssse_value)
      
@@ -28,11 +28,12 @@ def calculateWSSSE(data_to_cluster):
     plt.show()
     
     
-def getClusterIDs(data_to_cluster, K):
-    """gets cluster ids for data to be clustered"""
+def get_cluster_ids(data_to_cluster, K):
+    """Gets cluster ids for data to be clustered"""
     
     #~ print('Traning KMeans')
-    model = KMeans.train(data_to_cluster, K, maxIterations=10, initializationMode='random')
+    model = KMeans.train(
+        data_to_cluster, K, maxIterations=10, initializationMode='random')
     #~ print('Finished Traning')
     #~ print('Predicting Cluster IDs')
     cluster_ids = model.predict(data_to_cluster)
@@ -46,15 +47,13 @@ def getClusterIDs(data_to_cluster, K):
     return cluster_ids, data_to_cluster
     
     
-def plotClusters(cluster_ids, clusters, K):
-    """reduces dimensions of data to plots clusters on a 2d plane"""
-    
-    
+def plot_clusters(cluster_ids, clusters, K):
+    """Reduces dimensions of data to plots clusters on a 2d plane"""
+
     plt.figure(1)
         
     # Cluster ID values are used to show clusters with color in plots
     colors = cluster_ids.collect()
-    colormap = plt.cm.jet
     normalize = mpl.colors.Normalize(vmin=0, vmax=K)
     
     # Reduce nutrient values to 2 dimensions with TSNE
@@ -64,14 +63,14 @@ def plotClusters(cluster_ids, clusters, K):
     # Plot clusters
     content_on_x = cluster_embedded[:,0]
     content_on_y = cluster_embedded[:,1]
-    plt.scatter(content_on_x, content_on_y, s=3, c=colors, cmap=colormap, norm=normalize)
+    plt.scatter(
+        content_on_x, content_on_y, s=3, c=colors, cmap="jet", norm=normalize)
     plt.show()
     plt.clf()
 
 
-
 def categorize_values(categorize_value):
-    """classifies data into financial classes"""
+    """Classifies data into financial classes"""
     
     compare_value = float(categorize_value[0])
     if (compare_value<2):
@@ -86,15 +85,17 @@ def categorize_values(categorize_value):
     return categorize_value
 
 
-def plotAs4D(relevant_data, year):
-    """plots parallel coordinates"""
+def plot_as_4d(relevant_data, year):
+    """Plots parallel coordinates"""
     
     categorized_data = relevant_data.map(categorize_values)
     #~ print(categorized_data.takeSample(False, 5))
     csv_data = categorized_data.collect()
 
+    fieldnames = ['Class', 'Carbohydrates', 'Fiber', 'Fat', 'Protein']
+
     with open('./{}_categorized_data.csv'.format(year), 'w') as csv_file:
-        writer = csv.DictWriter(csv_file, fieldnames = ['Class', 'Carbohydrates', 'Fiber', 'Fat', 'Protein'])
+        writer = csv.DictWriter(csv_file, fieldnames = fieldnames)
         writer.writeheader()
         wr = csv.writer(csv_file)
         wr.writerows(csv_data)

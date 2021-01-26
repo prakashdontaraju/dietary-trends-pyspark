@@ -1,9 +1,8 @@
 import csv
-import math as m
+from matplotlib import pyplot as plt
 import pandas as pd
 import seaborn as sns
-from matplotlib import pyplot as plt
-from src.plots import showPieAnalysis, showTrendAnalysis
+from plots import show_pie_analysis, show_trend_analysis
 
 
 first_element_trend = []
@@ -11,9 +10,8 @@ second_element_trend = []
 third_element_trend = []
 fourth_element_trend = []
 
-
-def getTotalsFromData(data):
-    """gets element-wise total"""
+def get_totals_from_data(data):
+    """Gets element-wise total"""
     
     content_totals = data.sum()
     total_value = sum(content_totals)
@@ -22,33 +20,38 @@ def getTotalsFromData(data):
     third_element_total = content_totals[2]
     fourth_element_total = content_totals[3]
     
-    element_totals = [first_element_total, second_element_total, third_element_total, fourth_element_total]
+    element_totals = [
+        first_element_total, second_element_total, third_element_total,
+        fourth_element_total]
     
     return element_totals, total_value
     
     
-    
-def reportTrends(element_totals):
-    """reports element-wise trend"""
+def report_trends(element_totals):
+    """Reports element-wise trend"""
     
     first_element_trend.append(element_totals[0])
     second_element_trend.append(element_totals[1])
     third_element_trend.append(element_totals[2])
     fourth_element_trend.append(element_totals[3])
     
-    element_trends = [first_element_trend, second_element_trend, third_element_trend, fourth_element_trend]
+    element_trends = [
+        first_element_trend, second_element_trend, third_element_trend,
+        fourth_element_trend]
     
     return element_trends
 
 
-def getTrends(trends, content_on_x, x_labels, y_labels, title, labels):
-    """shows element-wise trend"""
+def get_trends(trends, content_on_x, x_labels, y_labels, title, labels):
+    """Shows element-wise trend"""
     
-    showTrendAnalysis(trends[0], trends[1], trends[2], trends[3], content_on_x, x_labels, y_labels, title, labels)
+    show_trend_analysis(
+        trends[0], trends[1], trends[2], trends[3], content_on_x,
+        x_labels, y_labels, title, labels)
     
 
-def reportTotalIntake(element_totals, total_value):
-    """reports element-wise total"""
+def report_total_intake(element_totals, total_value):
+    """Reports element-wise total"""
     
     element_totals[0]+=element_totals[0]
     element_totals[1]+=element_totals[1]
@@ -57,8 +60,7 @@ def reportTotalIntake(element_totals, total_value):
     
     total_value+=total_value
     
-    return element_totals, total_value
-    
+    return element_totals, total_value  
 
 averages_first = []
 averages_second = []
@@ -71,61 +73,64 @@ counts_middle = []
 counts_upper = []
 counts_verify = []
 
-def reportOverallAverageIntakePerPerson(element_totals):
-    """reports overall intake averages"""
+def report_overall_average_intake_per_person(element_totals):
+    """Reports overall intake averages"""
     
     first_element_average = (element_totals[0])/sum(total_counts)
     second_element_average = (element_totals[1])/sum(total_counts)
     third_element_average = (element_totals[2])/sum(total_counts)
     fourth_element_average = (element_totals[3])/sum(total_counts)
     
-    overall_intake_averages = [first_element_average, second_element_average, third_element_average, fourth_element_average]
+    overall_intake_averages = [first_element_average, second_element_average,
+    third_element_average, fourth_element_average]
     
     return overall_intake_averages
     
 
-def reportLowerAverageIntakePerPerson(element_totals):
-    """reports lower financial-class intake averages"""
+def report_lower_average_intake_per_person(element_totals):
+    """Reports lower financial-class intake averages"""
     
     first_element_average = (element_totals[0])/sum(counts_lower)
     second_element_average = (element_totals[1])/sum(counts_lower)
     third_element_average = (element_totals[2])/sum(counts_lower)
     fourth_element_average = (element_totals[3])/sum(counts_lower)
     
-    lower_intake_averages = [first_element_average, second_element_average, third_element_average, fourth_element_average]
+    lower_intake_averages = [first_element_average, second_element_average,
+    third_element_average, fourth_element_average]
     
     return lower_intake_averages
 
 
-def reportMiddleAverageIntakePerPerson(element_totals):
-    """reports middle lower financial-class intake averages"""
+def report_middle_average_intake_per_person(element_totals):
+    """Reports middle financial-class intake averages"""
     
     first_element_average = (element_totals[0])/sum(counts_middle)
     second_element_average = (element_totals[1])/sum(counts_middle)
     third_element_average = (element_totals[2])/sum(counts_middle)
     fourth_element_average = (element_totals[3])/sum(counts_middle)
     
-    middle_intake_averages = [first_element_average, second_element_average, third_element_average, fourth_element_average]
+    middle_intake_averages = [first_element_average, second_element_average,
+    third_element_average, fourth_element_average]
     
     return middle_intake_averages
 
 
-def reportUpperAverageIntakePerPerson(element_totals):
-    """reports upper financial-class intake averages"""
+def report_upper_average_intake_per_person(element_totals):
+    """Reports upper financial-class intake averages"""
     
     first_element_average = (element_totals[0])/sum(counts_upper)
     second_element_average = (element_totals[1])/sum(counts_upper)
     third_element_average = (element_totals[2])/sum(counts_upper)
     fourth_element_average = (element_totals[3])/sum(counts_upper)
     
-    upper_intake_averages = [first_element_average, second_element_average, third_element_average, fourth_element_average]
+    upper_intake_averages = [first_element_average, second_element_average,
+    third_element_average, fourth_element_average]
     
     return upper_intake_averages
 
-
     
-def computeAverageIntakePerPerson(element_averages):
-    """computes average intake per person"""
+def compute_average_intake_per_person(element_averages):
+    """Computes average intake per person"""
 
     averages_first.append(element_averages[0])
     averages_second.append(element_averages[1])
@@ -133,37 +138,49 @@ def computeAverageIntakePerPerson(element_averages):
     averages_fourth.append(element_averages[3])
     
 
-def getAverageIntakePerPersonNutrientWise(bar_labels, x_labels):
-    """gets nutrient-wise average intake per person"""
+def get_average_intake_per_person_nutrient_wise(bar_labels, x_labels):
+    """Gets nutrient-wise average intake per person"""
     
-    average_intakes = pd.DataFrame({bar_labels[0]:averages_first, bar_labels[1]:averages_second, bar_labels[2]:averages_third, bar_labels[3]:averages_fourth}, x_labels)
+    average_intakes = pd.DataFrame(
+        {bar_labels[0]:averages_first, bar_labels[1]:averages_second,
+        bar_labels[2]:averages_third, bar_labels[3]:averages_fourth}, x_labels)
     average_intakes.plot.bar()
     plt.show()
 
 
-def getAverageIntakePerPersonClassWise(overall_intake_averages, lower_intake_averages, middle_intake_averages, upper_intake_averages, bar_labels, x_labels):
-    """computes class-wise average intake per person"""
+def get_average_intake_per_person_class_wise(overall_intake_averages,
+lower_intake_averages, middle_intake_averages, upper_intake_averages,
+bar_labels, x_labels):
+    """Computes class-wise average intake per person"""
     
-    average_intakes = pd.DataFrame({bar_labels[0]:overall_intake_averages, bar_labels[1]:lower_intake_averages, bar_labels[2]:middle_intake_averages, bar_labels[3]:upper_intake_averages}, x_labels)
+    average_intakes = pd.DataFrame(
+        {bar_labels[0]:overall_intake_averages,
+        bar_labels[1]:lower_intake_averages,
+        bar_labels[2]:middle_intake_averages,
+        bar_labels[3]:upper_intake_averages}, x_labels)
     average_intakes.plot.bar()
     plt.show()
     
 
-def getMeanIntakePercentages(element_totals, total_value, macro_nutrients):
-    """gets mean intake percentages"""
+def get_mean_intake_percentages(element_totals, total_value, macro_nutrients):
+    """Gets mean intake percentages"""
 
     first_element_percentage = (element_totals[0]*100)/total_value
     second_element_percentage = (element_totals[1]*100)/total_value
     third_element_percentage = (element_totals[2]*100)/total_value
     fourth_element_percentage = (element_totals[3]*100)/total_value
     
-    element_percentages = [first_element_percentage, second_element_percentage, third_element_percentage, fourth_element_percentage]
+    element_percentages = [first_element_percentage, second_element_percentage,
+    third_element_percentage, fourth_element_percentage]
     
-    showPieAnalysis(element_percentages, macro_nutrients, 'Mean Food Composition')
+    show_pie_analysis(
+        element_percentages, macro_nutrients, 'Mean Food Composition')
     
 
-def reportClassCounts(nutrient_intake, nutrients_lower_arrays, nutrients_middle_arrays, nutrients_upper_arrays):
-    """reports class-wise counts"""
+def report_class_counts(
+    nutrient_intake, nutrients_lower_arrays, nutrients_middle_arrays,
+    nutrients_upper_arrays):
+    """Reports class-wise counts"""
     
     total_children = nutrient_intake.count()
     total_counts.append(total_children)
@@ -178,8 +195,8 @@ def reportClassCounts(nutrient_intake, nutrients_lower_arrays, nutrients_middle_
     counts_verify.append(totals_verification)
     
     
-def getClassCounts():
-    """gets class-wise counts"""
+def get_class_counts():
+    """Gets class-wise counts"""
     
     #~ print('Total Children from All Households: {}'.format(sum(total_counts)))
     #~ print('Children from Lower Income Households: {}'.format(sum(counts_lower)))
@@ -190,11 +207,11 @@ def getClassCounts():
     
     explode = (0.1, 0, 0)
     plt.figure(1)
-    plt.pie(all_counts, explode=explode, labels=['lower', 'middle', 'upper'], autopct='%1.1f%%', shadow=True, startangle=180)
+    plt.pie(
+        all_counts, explode=explode, labels=['lower', 'middle', 'upper'],
+        autopct='%1.1f%%', shadow=True, startangle=180)
     plt.title('Income Class Distribution')
     plt.show()
-
-
 
 overall_carb_trend = []
 overall_fiber_trend = []
@@ -217,8 +234,8 @@ upper_fat_trend = []
 upper_prot_trend = []
 
 
-def computeMeanNutrientIntake(nutrient_intake):
-    """compute mean nutrient intake"""
+def compute_mean_nutrient_intake(nutrient_intake):
+    """Compute mean nutrient intake"""
     
     nutrient_totals = nutrient_intake.sum()
     total_count = nutrient_intake.count()
@@ -232,18 +249,17 @@ def computeMeanNutrientIntake(nutrient_intake):
     return nutrients_mean
 
 
-def reportMeanOverall(nutrients_mean):
-    """report mean overall"""
+def report_mean_overall(nutrients_mean):
+    """Report mean overall"""
     
     overall_carb_trend.append(nutrients_mean[0])
     overall_fiber_trend.append(nutrients_mean[1])
     overall_fat_trend.append(nutrients_mean[2])
     overall_prot_trend.append(nutrients_mean[3])
-    
         
 
-def reportMeanLower(nutrients_mean):
-    """report mean nutrient intake lower financial-class"""
+def report_mean_lower(nutrients_mean):
+    """Report mean nutrient intake lower financial-class"""
     
     lower_carb_trend.append(nutrients_mean[0])
     lower_fiber_trend.append(nutrients_mean[1])
@@ -251,8 +267,8 @@ def reportMeanLower(nutrients_mean):
     lower_prot_trend.append(nutrients_mean[3])
     
 
-def reportMeanMiddle(nutrients_mean):
-    """report mean nutrient intake middle financial-class"""
+def report_mean_middle(nutrients_mean):
+    """Report mean nutrient intake middle financial-class"""
     
     middle_carb_trend.append(nutrients_mean[0])
     middle_fiber_trend.append(nutrients_mean[1])
@@ -260,8 +276,8 @@ def reportMeanMiddle(nutrients_mean):
     middle_prot_trend.append(nutrients_mean[3])
 
    
-def reportMeanUpper(nutrients_mean):
-    """report mean nutrient intake upper financial-class"""
+def report_mean_upper(nutrients_mean):
+    """Report mean nutrient intake upper financial-class"""
     
     upper_carb_trend.append(nutrients_mean[0])
     upper_fiber_trend.append(nutrients_mean[1])
@@ -269,18 +285,26 @@ def reportMeanUpper(nutrients_mean):
     upper_prot_trend.append(nutrients_mean[3])
 
 
-def getClassWiseNutrientTrends(years, classes):
-    """get class-wise nutrient trend"""    
+def get_class_wise_nutrient_trends(years, classes):
+    """Get class-wise nutrient trend"""    
        
-    showTrendAnalysis(overall_carb_trend, lower_carb_trend, middle_carb_trend, upper_carb_trend, years, 'Years', 'Intake (g)', 'Carbohydrate Intake Trend', classes)
-    showTrendAnalysis(overall_fiber_trend, lower_fiber_trend, middle_fiber_trend, upper_fiber_trend, years, 'Years', 'Intake (g)', 'Fiber Intake Trend', classes)
-    showTrendAnalysis(overall_fat_trend, lower_fat_trend, middle_fat_trend, upper_fat_trend, years, 'Years', 'Intake (g)', 'Fat Intake Trend', classes)
-    showTrendAnalysis(overall_prot_trend, lower_prot_trend, middle_prot_trend, upper_prot_trend, years, 'Years', 'Intake (g)', 'Protein Intake Trend', classes)
-
+    show_trend_analysis(
+        overall_carb_trend, lower_carb_trend, middle_carb_trend,
+        upper_carb_trend, years, 'Years', 'Intake (g)',
+        'Carbohydrate Intake Trend', classes)
+    show_trend_analysis(
+        overall_fiber_trend, lower_fiber_trend, middle_fiber_trend,
+        upper_fiber_trend, years, 'Years', 'Intake (g)',
+        'Fiber Intake Trend', classes)
+    show_trend_analysis(overall_fat_trend, lower_fat_trend, middle_fat_trend,
+    upper_fat_trend, years, 'Years', 'Intake (g)', 'Fat Intake Trend', classes)
+    show_trend_analysis(overall_prot_trend, lower_prot_trend, middle_prot_trend,
+    upper_prot_trend, years, 'Years', 'Intake (g)',
+    'Protein Intake Trend', classes)
 
 
 def categorize_values(categorize_value):
-    """classify into financial class"""
+    """Classify into financial class"""
     
     compare_value = float(categorize_value[0])
     if (compare_value<2):
@@ -295,9 +319,8 @@ def categorize_values(categorize_value):
     return categorize_value
     
 
-
-def normalizeNutrientData(relevant_data):
-    """normalize nutrient data"""
+def normalize_nutrient_data(relevant_data):
+    """Normalize nutrient data"""
     
     #~ print(relevant_data.takeSample(False, 5))
     
@@ -341,7 +364,6 @@ def normalizeNutrientData(relevant_data):
         content = ((fat-min_fat)/range_fat)
         fat_normalized.append(content)
         
-    
     # Protein
     max_prot = max(prot_cleaned)
     min_prot = min(prot_cleaned)
@@ -355,8 +377,9 @@ def normalizeNutrientData(relevant_data):
     return category_data, carb_normalized, fiber_normalized, fat_normalized, prot_normalized
     
     
-def generateBoxPlot(category_data, carb_normalized, fiber_normalized, fat_normalized, prot_normalized):
-    """get box plot"""
+def generate_box_plot(category_data, carb_normalized, fiber_normalized,
+fat_normalized, prot_normalized):
+    """Get box plot"""
     
     cumulative_dataset = pd.DataFrame(
                                         {

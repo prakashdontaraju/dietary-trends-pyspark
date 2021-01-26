@@ -1,8 +1,10 @@
 # dietary-trends-pyspark
  
+March 2018
+
 I analyze parameters such as food nutrient-wise composition, dietary intake comparison among financial classes and trends in average nutrient intake per person over 12 years across financial classes.
 
-I process data by utilizing Apache Spark Python API - PySpark and cluster data by making use of its Machine Learning library MLlib. I also employ scikit-learn's tSNE for dimensionality reduction. 
+I process data by utilizing Apache Spark Python API - PySpark and cluster data by making use of its Machine Learning library MLlib. I also employ scikit-learn's tSNE for dimensionality reduction.
 
 
 ## Problem
