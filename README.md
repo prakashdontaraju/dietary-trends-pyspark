@@ -2,17 +2,28 @@
  
 March 2018
 
+## Business Case
+
+Our customer (a Disease Control Firm) need insight on dietary intake of children among a certain section of population due to an alarming increase in the rate of new diabetes diagnoses over the 2 decades from 1998 to 2018.
+
+Improper diet intake can deprive the body of vital macro and micro nutrients leading to diabetes.
+
+### Focus
+
 I analyze parameters such as food nutrient-wise composition, dietary intake comparison among financial classes and trends in average nutrient intake per person over 12 years across financial classes.
 
 I process data by utilizing Apache Spark Python API - PySpark and cluster data by making use of its Machine Learning library MLlib. I also employ scikit-learn's tSNE for dimensionality reduction.
 
+### Data
 
-## Problem
+The firm provides us data from a program of studies conducted by The National Health and Nutrition Examination Survey [NHANES](https://wwwn.cdc.gov/nchs/nhanes/).
 
-There is an alarming increase in the rate of new diabetes diagnoses among children over the 2 decades from 1998 to 2018. Improper diet intake can deprive the body of vital macro and micro nutrients leading to diabetes.
+It is designed to assess the health and nutritional status of adults and children in the United States.
+
+This method assumes that the diet of an individual can be represented by the intakes over an average 24-hour period.
 
 
-## Solution
+## Implementation
 
 I discover trends in dietary intake over a duration of 12 years and and analyze the information to present the likelihood of these children being diagnosed.
 
@@ -32,23 +43,9 @@ Python Libraries  pyspark, scikit-learn, numpy, pandas, matplotlib
 Text Editor       VS Code or any other
 ```
 
-
 ### Deployment
 
 Ensure the path in the line ```findspark.init(r'C:/.../spark-2.3.0-bin-hadoop2.7')``` within ```dietary-trends.py``` matches your Spark installation path
-
-
-### Data
-
-The National Health and Nutrition Examination Survey [NHANES](https://wwwn.cdc.gov/nchs/nhanes/) is a program of studies designed to assess the health and nutritional status of adults and children in the United States.
-
-This survey consists of interviews which include demographic, socio-economic, dietary, and health-related questions.
-
-Dietary data are collected using a 24-hour dietary recall that allows participants to document every food item consumed during the past 24 hours.
-
-This method assumes that the diet of an individual can be represented by the intakes over an average 24-hour period.
-
-However, data collected in 1999-2000 and 2001-2002 contain information about the food intake of participants for a single day.
 
 
 ## Process
@@ -101,6 +98,11 @@ I perform the following analysis on pre-processed (clean) children data:
 * Average intake per financial class over 12 years for each nutrient
 
 * Fat vs Carbohydrate and Protein vs Fiber density plots
+
+
+### Results
+
+
 
 
 ## Author
