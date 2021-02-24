@@ -89,7 +89,7 @@ I performed the following analysis on pre-processed (clean) children data:
 
 ### Insights
 
-<img src="https://github.com/prakashdontaraju/dietary-trends-pyspark/tree/master/src/insights/dietary_insights_children.png">
+<img src="https://github.com/prakashdontaraju/dietary-trends-pyspark/blob/master/src/insights/dietary_insights_children.png">
 
 ## Acknowledgments
 
