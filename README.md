@@ -1,42 +1,32 @@
 # dietary-trends-pyspark
- 
-March 2018
+
+March, 2018
 
 ## Business Case
 
-Our customer (a Disease Control Firm) need insight on dietary intake of children among a certain section of population due to an alarming increase in the rate of new diabetes diagnoses over the 2 decades from 1998 to 2018.
+A Disease Control firm (customer) needs insight on dietary intake of children among a certain section of population due to an alarming increase in the rate of new diabetes diagnoses from 1998 to 2018.
 
-Improper diet intake can deprive the body of vital macro and micro nutrients leading to diabetes.
+Imbalanced diet can deprive the body of vital macro and micro nutrients leading to diabetes among many others.
 
 ### Focus
 
-I analyze parameters such as food nutrient-wise composition, dietary intake comparison among financial classes and trends in average nutrient intake per person over 12 years across financial classes.
+I analyzed parameters such as nutrient-wise composition, dietary intake comparison among financial classes and trends in average nutrient intake per person over 12 years across financial classes to present my insights.
 
-I process data by utilizing Apache Spark Python API - PySpark and cluster data by making use of its Machine Learning library MLlib. I also employ scikit-learn's tSNE for dimensionality reduction.
+I processed data by utilizing Apache Spark (PySpark) and clustered data by making use of its Machine Learning library MLlib. I also employed scikit-learn's tSNE for dimensionality reduction.
 
 ### Data
 
-The firm provides us data from a program of studies conducted by The National Health and Nutrition Examination Survey [NHANES](https://wwwn.cdc.gov/nchs/nhanes/).
+The firm provided us data from the National Health and Nutrition Examination Survey ([NHANES](https://wwwn.cdc.gov/nchs/nhanes/)).
 
-It is designed to assess the health and nutritional status of adults and children in the United States.
+NHANES conduct a program of studies designed to assess the health and nutritional status of adults and children in the United States.
 
-This method assumes that the diet of an individual can be represented by the intakes over an average 24-hour period.
-
+These studies assume that the diet of an individual can be represented by the intakes over an average 24-hour period.
 
 ## Implementation
 
-I discover trends in dietary intake over a duration of 12 years and and analyze the information to present the likelihood of these children being diagnosed.
-
-Kindly continue reading for instructions to deploy my project and observe the results.
-
-
-### Prerequisites
-
-What are the tools you need to install?
+### Tools
 
 ```
-You must have administrator access to install the following:
-
 Apache Spark      spark-2.3.0-bin-hadoop2.7 or newer
 Python            3.6.5 or newer
 Python Libraries  pyspark, scikit-learn, numpy, pandas, matplotlib
@@ -45,38 +35,36 @@ Text Editor       VS Code or any other
 
 ### Deployment
 
-Ensure the path in the line ```findspark.init(r'C:/.../spark-2.3.0-bin-hadoop2.7')``` within ```dietary-trends.py``` matches your Spark installation path
-
+Ensure the path in the line ```findspark.init(r'C:/.../spark-2.3.0-bin-hadoop2.7')``` within [dietary-trends.py](https://github.com/prakashdontaraju/dietary-trends-pyspark/blob/master/dietary-trends.py) matches the Spark installation path.
 
 ## Process
 
-* Demographic details, I collect, as a resilient distributed dataset (RDD) are:
+* Demographic details, I collected, as a resilient distributed dataset (RDD) are:
   - *sequence number*
   - *age* (in months)
   - income to poverty ratio (*ipr*)
 
-* Diet details, I collect, as another RDD are:
+* Diet details, I collected, as another RDD are:
   - *sequence number*
   - *carbohydrates*
   - *fiber*
   - *fat*
   - *protein*
 
-* I pre-process these RDDs. In other words, I clean the data to make it ready for analysis.
+* I preprocessed these RDDs. In other words, I cleaned the data to make it ready for analysis.
 
-* Children, I identify as, age under *13 years* (*156 months*)
+* Children, I identified as, age under *13 years* (*156 months*)
 
-* I map *ipr* to nutrient intake information (*carbohydrates*, *fiber*, *fat* and *protein*) with sequence number
+* I mapped *ipr* to nutrient intake information (*carbohydrates*, *fiber*, *fat* and *protein*) with sequence number
 
-* *ipr* values range from *0* to *6*. Thus, I classify children into *3* financial classes:
+* *ipr* values range from *0* to *6*. Thus, I classified children into *3* financial classes:
   - *lower*   :  *ipr* < *2*
   - *middle*  :  *2* <= *ipr* < *4*
   - *upper*   :  *ipr* >= *4*
 
-
 ## Analysis
 
-I perform the following analysis on pre-processed (clean) children data:
+I performed the following analysis on pre-processed (clean) children data:
 
 * Intake Trend over 12 years per nutrient
 
@@ -99,17 +87,14 @@ I perform the following analysis on pre-processed (clean) children data:
 
 * Fat vs Carbohydrate and Protein vs Fiber density plots
 
+### Insights
 
-### Results
-
-
-
-
-## Author
-
-**Prakash Dontaraju** [LinkedIn](https://www.linkedin.com/in/prakashdontaraju) [Medium](https://medium.com/@wittygrit)
-
+<img src="https://github.com/prakashdontaraju/dietary-trends-pyspark/tree/master/src/insights/dietary_insights_children.png">
 
 ## Acknowledgments
 
 All data, I based my analysis on, belongs to [NHANES](https://www.cdc.gov/nchs/nhanes/index.htm).
+
+## Connect With Me
+
+**Prakash Dontaraju** [LinkedIn](https://www.linkedin.com/in/prakashdontaraju) [Twitter](https://twitter.com/WittyGrit) [Medium](https://medium.com/@wittygrit)
