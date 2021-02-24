@@ -35,7 +35,7 @@ Text Editor       VS Code or any other
 
 ### Deployment
 
-Ensure the path in the line ```findspark.init(r'C:/.../spark-2.3.0-bin-hadoop2.7')``` within [dietary-trends.py](https://github.com/prakashdontaraju/dietary-trends-pyspark/blob/master/dietary-trends.py) matches the Spark installation path.
+Ensure the path in the line ```findspark.init(r'C:/.../spark-2.3.0-bin-hadoop2.7')``` within [dietary_trends.py](https://github.com/prakashdontaraju/dietary-trends-pyspark/blob/master/dietary_trends.py) matches the Spark installation path.
 
 ## Process
 
