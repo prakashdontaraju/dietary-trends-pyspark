@@ -64,7 +64,7 @@ Ensure the path in the line ```findspark.init(r'C:/.../spark-2.3.0-bin-hadoop2.7
 
 ## Analysis
 
-I performed the following analysis on pre-processed (clean) children data:
+I pre-processed (transformed) children data and performed the following analysis:
 
 * Intake Trend over 12 years per nutrient
 
